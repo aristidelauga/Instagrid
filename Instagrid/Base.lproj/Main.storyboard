@@ -141,6 +141,10 @@
                             <constraint firstItem="r0I-F5-ebd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gKa-Hb-eIt"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="SwipeUpLabel" destination="0sp-ED-R9N" id="gOk-z5-mIk"/>
+                        <outlet property="arrowView" destination="pBj-hY-Il9" id="E1L-EA-GxM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
