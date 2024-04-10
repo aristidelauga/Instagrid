@@ -9,7 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
-	@IBOutlet weak var SwipeUpLabel: UITextView!
+
+	@IBOutlet weak var swipeUpLabel: UILabel!
 	@IBOutlet weak var arrowView: UIImageView!
 
 	override func viewDidLoad() {
@@ -20,10 +21,10 @@ class ViewController: UIViewController {
 	@objc func orientationObserved() {
 		let orientation = UIDevice.current.orientation
 		if orientation.isPortrait {
-			SwipeUpLabel.text = "Swipe up to share"
+			swipeUpLabel.text = "Swipe up to share"
 			arrowView.transform = CGAffineTransform(rotationAngle: 0)
 		} else {
-			SwipeUpLabel.text = "Swipe left to share"
+			swipeUpLabel.text = "Swipe left to share"
 			arrowView.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 2))
 		}
 	}

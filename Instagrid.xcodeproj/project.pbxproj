@@ -13,6 +13,8 @@
 		922702372B1BB2E500603B5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 922702352B1BB2E500603B5D /* Main.storyboard */; };
 		922702392B1BB2E600603B5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 922702382B1BB2E600603B5D /* Assets.xcassets */; };
 		9227023C2B1BB2E600603B5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9227023A2B1BB2E600603B5D /* LaunchScreen.storyboard */; };
+		92DEF1CA2BC6ECB8006D61F1 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 92DEF1C82BC6ECB8006D61F1 /* Delm-Medium.otf */; };
+		92DEF1CB2BC6ECB8006D61F1 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 92DEF1C92BC6ECB8006D61F1 /* ThirstySoftRegular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		922702382B1BB2E600603B5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9227023B2B1BB2E600603B5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9227023D2B1BB2E600603B5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92DEF1C82BC6ECB8006D61F1 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
+		92DEF1C92BC6ECB8006D61F1 /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 		9227022E2B1BB2E500603B5D /* Instagrid */ = {
 			isa = PBXGroup;
 			children = (
+				92DEF1C82BC6ECB8006D61F1 /* Delm-Medium.otf */,
+				92DEF1C92BC6ECB8006D61F1 /* ThirstySoftRegular.otf */,
 				9227022F2B1BB2E500603B5D /* AppDelegate.swift */,
 				922702312B1BB2E500603B5D /* SceneDelegate.swift */,
 				922702332B1BB2E500603B5D /* ViewController.swift */,
@@ -127,6 +133,8 @@
 			files = (
 				9227023C2B1BB2E600603B5D /* LaunchScreen.storyboard in Resources */,
 				922702392B1BB2E600603B5D /* Assets.xcassets in Resources */,
+				92DEF1CB2BC6ECB8006D61F1 /* ThirstySoftRegular.otf in Resources */,
+				92DEF1CA2BC6ECB8006D61F1 /* Delm-Medium.otf in Resources */,
 				922702372B1BB2E500603B5D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
