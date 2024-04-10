@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		922702302B1BB2E500603B5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9227022F2B1BB2E500603B5D /* AppDelegate.swift */; };
 		922702322B1BB2E500603B5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922702312B1BB2E500603B5D /* SceneDelegate.swift */; };
-		922702342B1BB2E500603B5D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922702332B1BB2E500603B5D /* ViewController.swift */; };
+		922702342B1BB2E500603B5D /* InstagridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922702332B1BB2E500603B5D /* InstagridViewController.swift */; };
 		922702372B1BB2E500603B5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 922702352B1BB2E500603B5D /* Main.storyboard */; };
 		922702392B1BB2E600603B5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 922702382B1BB2E600603B5D /* Assets.xcassets */; };
 		9227023C2B1BB2E600603B5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9227023A2B1BB2E600603B5D /* LaunchScreen.storyboard */; };
@@ -21,7 +21,7 @@
 		9227022C2B1BB2E500603B5D /* Instagrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9227022F2B1BB2E500603B5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		922702312B1BB2E500603B5D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		922702332B1BB2E500603B5D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		922702332B1BB2E500603B5D /* InstagridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagridViewController.swift; sourceTree = "<group>"; };
 		922702362B1BB2E500603B5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		922702382B1BB2E600603B5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9227023B2B1BB2E600603B5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 				92DEF1C92BC6ECB8006D61F1 /* ThirstySoftRegular.otf */,
 				9227022F2B1BB2E500603B5D /* AppDelegate.swift */,
 				922702312B1BB2E500603B5D /* SceneDelegate.swift */,
-				922702332B1BB2E500603B5D /* ViewController.swift */,
+				922702332B1BB2E500603B5D /* InstagridViewController.swift */,
 				922702352B1BB2E500603B5D /* Main.storyboard */,
 				922702382B1BB2E600603B5D /* Assets.xcassets */,
 				9227023A2B1BB2E600603B5D /* LaunchScreen.storyboard */,
@@ -146,7 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				922702342B1BB2E500603B5D /* ViewController.swift in Sources */,
+				922702342B1BB2E500603B5D /* InstagridViewController.swift in Sources */,
 				922702302B1BB2E500603B5D /* AppDelegate.swift in Sources */,
 				922702322B1BB2E500603B5D /* SceneDelegate.swift in Sources */,
 			);

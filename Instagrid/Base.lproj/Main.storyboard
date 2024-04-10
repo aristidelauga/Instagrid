@@ -8,11 +8,16 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Delm-Medium.otf">
+            <string>Delm-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Instagrid View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Instagrid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="InstagridViewController" customModule="Instagrid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="932" height="430"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,25 +33,25 @@
                                 <rect key="frame" x="109" y="120" width="714" height="269"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="RgB-1s-zHn" userLabel="Swipe Up Stack VIew">
-                                        <rect key="frame" x="0.0" y="0.0" width="202" height="269"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="154" height="269"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Arrow Up" translatesAutoresizingMaskIntoConstraints="NO" id="pBj-hY-Il9" userLabel="Arrow-UpView">
-                                                <rect key="frame" x="88.666666666666657" y="0.0" width="25" height="25"/>
+                                                <rect key="frame" x="64.666666666666657" y="0.0" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="3Eh-W4-379"/>
                                                     <constraint firstAttribute="width" secondItem="pBj-hY-Il9" secondAttribute="height" multiplier="1:1" id="xdm-9I-J3L"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to share" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoj-x4-Sug">
-                                                <rect key="frame" x="0.0" y="29" width="202" height="240"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to share" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoj-x4-Sug">
+                                                <rect key="frame" x="0.0" y="29" width="154" height="240"/>
+                                                <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="98L-LJ-ig7" userLabel="FrameStackView">
-                                        <rect key="frame" x="282.66666666666669" y="0.0" width="269.00000000000006" height="269"/>
+                                        <rect key="frame" x="258.66666666666669" y="0.0" width="269.00000000000006" height="269"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="R4J-pf-k9O">
                                                 <rect key="frame" x="0.0" y="0.0" width="269" height="134.66666666666666"/>
@@ -63,7 +68,7 @@
                                                         </buttonConfiguration>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcE-ld-gzB">
-                                                        <rect key="frame" x="134.66666666666669" y="0.0" width="134.33333333333331" height="134.66666666666666"/>
+                                                        <rect key="frame" x="134.66666666666663" y="0.0" width="134.33333333333337" height="134.66666666666666"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="Plus" cornerStyle="fixed">
@@ -90,7 +95,7 @@
                                                         </buttonConfiguration>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vET-mw-YJY">
-                                                        <rect key="frame" x="134.66666666666669" y="0.0" width="134.33333333333331" height="134.33333333333334"/>
+                                                        <rect key="frame" x="134.66666666666663" y="0.0" width="134.33333333333337" height="134.33333333333334"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="Plus" cornerStyle="fixed">
