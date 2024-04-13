@@ -13,6 +13,19 @@ final class InstagridViewController: UIViewController {
 	@IBOutlet private weak var swipeUpLabel: UILabel!
 	@IBOutlet private weak var arrowView: UIImageView!
 
+	@IBOutlet weak var topLeadingButton: UIButton!
+	@IBOutlet weak var topTrailingButton: UIButton!
+	@IBOutlet weak var bottomLeadingButton: UIButton!
+	@IBOutlet weak var bottomTrailingButton: UIButton!
+	
+
+	@IBOutlet weak var threeFrameButton: UIButton!
+	
+	@IBOutlet weak var reversedThreeFrameButton: UIButton!
+	
+	@IBOutlet weak var fourFrameButton: UIButton!
+
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		observeOrientation()
@@ -39,6 +52,34 @@ final class InstagridViewController: UIViewController {
 		}
 	}
 
+
+	@IBAction private func didTapThreeFramesButton() {
+		displayThreeFrames()
+	}
+	
+	@IBAction private func didTapReversedThreeFramesButton() {
+		displayReversedThreeFrames()
+	}
+	
+
+	@IBAction private func didTapFourFramesButton() {
+		displayFourFramesButton()
+	}
+	
+	private func displayThreeFrames() {
+		bottomTrailingButton.isHidden = false
+		topTrailingButton.isHidden = true
+	}
+
+	private func displayReversedThreeFrames() {
+		topTrailingButton.isHidden = false
+		bottomTrailingButton.isHidden = true
+	}
+
+	private func displayFourFramesButton() {
+		topTrailingButton.isHidden = false
+		bottomTrailingButton.isHidden = false
+	}
 
 }
 
