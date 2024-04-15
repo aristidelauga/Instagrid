@@ -70,6 +70,9 @@
                                                             </backgroundConfiguration>
                                                             <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="setBackgroundImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ozb-hJ-ir2"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcE-ld-gzB" userLabel="topTrailingButton">
                                                         <rect key="frame" x="140" y="0.0" width="140" height="140"/>
@@ -81,6 +84,9 @@
                                                             </backgroundConfiguration>
                                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="setBackgroundImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sF5-nH-7Df"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -97,6 +103,9 @@
                                                                 <color key="strokeColor" red="0.023529411760000001" green="0.36470588240000001" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="setBackgroundImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L60-QU-gtl"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vET-mw-YJY" userLabel="bottomTrailingButton">
                                                         <rect key="frame" x="140" y="0.0" width="140" height="140"/>
@@ -107,6 +116,9 @@
                                                                 <color key="strokeColor" red="0.023529411760000001" green="0.36470588240000001" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="setBackgroundImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XnW-X5-eYc"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
