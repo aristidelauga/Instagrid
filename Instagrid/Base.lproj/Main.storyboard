@@ -54,10 +54,10 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="98L-LJ-ig7" userLabel="FrameStackView">
+                                    <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="98L-LJ-ig7" userLabel="FrameStackView">
                                         <rect key="frame" x="55" y="214.66666666666669" width="280" height="280"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="R4J-pf-k9O" userLabel="TopTwoButtton StackView">
+                                            <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="R4J-pf-k9O" userLabel="TopTwoButtton StackView">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="140"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifu-ek-jAv" userLabel="topLeadingButton">
@@ -92,7 +92,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iRO-S1-Fa7" userLabel="BottomTwoButton StackView">
+                                            <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iRO-S1-Fa7" userLabel="BottomTwoButton StackView">
                                                 <rect key="frame" x="0.0" y="139.99999999999994" width="280" height="140"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jP-AN-cIb" userLabel="bottomLeadingButton">
@@ -130,7 +130,7 @@
                                             <constraint firstAttribute="width" secondItem="98L-LJ-ig7" secondAttribute="height" multiplier="1:1" id="fhK-8C-UE3"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="r0I-F5-ebd" userLabel="DisplayOptions StackView">
+                                    <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="r0I-F5-ebd" userLabel="DisplayOptions StackView">
                                         <rect key="frame" x="48" y="619" width="294" height="90"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kkh-RZ-YCT" userLabel="Three Frame Button">
@@ -142,12 +142,12 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain">
-                                                    <backgroundConfiguration key="background" image="Layout 1" imageContentMode="scaleAspectFill">
+                                                    <backgroundConfiguration key="background" image="Layout 1">
                                                         <color key="strokeColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </backgroundConfiguration>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="didTapThreeFramesButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="YUF-c4-JPt"/>
+                                                    <action selector="didTapThreeFramesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uom-jd-sgK"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rR-hy-jvZ">
@@ -162,7 +162,7 @@
                                                     <backgroundConfiguration key="background" image="Layout 2"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="didTapReversedThreeFramesButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tt6-rg-RYi"/>
+                                                    <action selector="didTapReversedThreeFramesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FSq-Bb-z1b"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VV9-o8-nUH">
@@ -177,6 +177,7 @@
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="didTapFourFramesButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="rTg-Jy-Cvz"/>
+                                                    <action selector="didTapFourFramesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XBs-K2-DXy"/>
                                                 </connections>
                                             </button>
                                         </subviews>

@@ -9,7 +9,8 @@ import UIKit
 
 final class InstagridViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-	// Pourquoi doit-on les mettre en weak?
+	// MARK: IBOutlets
+
 	@IBOutlet private weak var swipeUpLabel: UILabel!
 	@IBOutlet private weak var arrowView: UIImageView!
 
@@ -20,12 +21,11 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 
 
 	@IBOutlet weak var threeFrameButton: UIButton!
-
 	@IBOutlet weak var reversedThreeFrameButton: UIButton!
-
 	@IBOutlet weak var fourFrameButton: UIButton!
 
 	@IBOutlet weak var SwipeStackView: UIStackView!
+
 	var selectedTag: Int?
 
 	override func viewDidLoad() {
@@ -36,9 +36,15 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		SwipeStackView.addGestureRecognizer(panGestureRecognizer)
 	}
 
-	private func observeOrientation() {
-		NotificationCenter.default.addObserver(self, selector: #selector(orientationObserved),
-											   name: UIDevice.orientationDidChangeNotification, object: nil)
+	// MARK: @Objc methods
+
+	@objc private func swipToShare(_ sender: UIPanGestureRecognizer) {
+		//		switch sender.state {
+		//			case .possible, .began, .changed :
+		//
+		//			case .ended, .cancelled, .failed, .recognized:
+		//
+		//		}
 	}
 
 	@objc private func orientationObserved() {
@@ -56,6 +62,8 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 				arrowView.transform = .identity
 		}
 	}
+
+	// MARK: @IBActions
 
 	@IBAction private func setBackgroundImage(_ sender: UIButton) {
 		let imagePickerController = UIImagePickerController()
@@ -81,6 +89,8 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		sender.setImage(UIImage(named: "Selected"), for: .normal)
 	}
 
+	// MARK: other methods
+
 	private func displayThreeFrames() {
 		bottomTrailingButton.isHidden = false
 		topTrailingButton.isHidden = true
@@ -103,7 +113,8 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		bottomTrailingButton.tag = 4
 	}
 
-	internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+	internal func imagePickerController(_ picker: UIImagePickerController,
+										didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
 		guard let image = info[.editedImage] as? UIImage else {
 			print("No image found")
@@ -121,14 +132,10 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		picker.dismiss(animated: true)
 	}
 
-
-	@objc private func swipToShare(_ sender: UIPanGestureRecognizer) {
-//		switch sender.state {
-//			case .possible, .began, .changed :
-//
-//			case .ended, .cancelled, .failed, .recognized:
-//
-//		}
+	private func observeOrientation() {
+		NotificationCenter.default.addObserver(self, selector: #selector(orientationObserved),
+											   name: UIDevice.orientationDidChangeNotification, object: nil)
 	}
+
 }
 
