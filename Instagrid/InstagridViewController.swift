@@ -9,7 +9,7 @@ import UIKit
 
 final class InstagridViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-// Pourquoi doit-on les mettre en weak?
+	// Pourquoi doit-on les mettre en weak?
 	@IBOutlet private weak var swipeUpLabel: UILabel!
 	@IBOutlet private weak var arrowView: UIImageView!
 
@@ -17,20 +17,23 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	@IBOutlet weak var topTrailingButton: UIButton!
 	@IBOutlet weak var bottomLeadingButton: UIButton!
 	@IBOutlet weak var bottomTrailingButton: UIButton!
-	
+
 
 	@IBOutlet weak var threeFrameButton: UIButton!
-	
+
 	@IBOutlet weak var reversedThreeFrameButton: UIButton!
-	
+
 	@IBOutlet weak var fourFrameButton: UIButton!
 
+	@IBOutlet weak var SwipeStackView: UIStackView!
 	var selectedTag: Int?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		observeOrientation()
 		setupTags()
+		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(swipToShare(_:)))
+		SwipeStackView.addGestureRecognizer(panGestureRecognizer)
 	}
 
 	private func observeOrientation() {
@@ -63,19 +66,21 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		self.selectedTag = sender.tag
 	}
 
-	@IBAction private func didTapThreeFramesButton() {
+	@IBAction private func didTapThreeFramesButton(_ sender: UIButton) {
 		displayThreeFrames()
+		sender.setImage(UIImage(named: "Selected"), for: .normal)
 	}
-	
-	@IBAction private func didTapReversedThreeFramesButton() {
-		displayReversedThreeFrames()
-	}
-	
 
-	@IBAction private func didTapFourFramesButton() {
-		displayFourFramesButton()
+	@IBAction private func didTapReversedThreeFramesButton(_ sender: UIButton) {
+		displayReversedThreeFrames()
+		sender.setImage(UIImage(named: "Selected"), for: .normal)
 	}
-	
+
+	@IBAction private func didTapFourFramesButton(_ sender: UIButton) {
+		displayFourFramesButton()
+		sender.setImage(UIImage(named: "Selected"), for: .normal)
+	}
+
 	private func displayThreeFrames() {
 		bottomTrailingButton.isHidden = false
 		topTrailingButton.isHidden = true
@@ -106,13 +111,24 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		}
 
 		if let selectedTag = selectedTag, let buttonToUpdate = view.viewWithTag(selectedTag) as? UIButton {
-			buttonToUpdate.setImage(image, for: .normal)
+			let buttonSize = buttonToUpdate.frame.size
+			buttonToUpdate.imageView?.frame.size = buttonSize
 			buttonToUpdate.clipsToBounds = true
 			buttonToUpdate.imageView?.contentMode = .scaleAspectFit
+			buttonToUpdate.setImage(image, for: .normal)
 		}
 
 		picker.dismiss(animated: true)
 	}
 
+
+	@objc private func swipToShare(_ sender: UIPanGestureRecognizer) {
+//		switch sender.state {
+//			case .possible, .began, .changed :
+//
+//			case .ended, .cancelled, .failed, .recognized:
+//
+//		}
+	}
 }
 
