@@ -26,14 +26,17 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 
 	@IBOutlet weak var SwipeStackView: UIStackView!
 
+	var threeFrameImageView = UIImageView()
+	var reversedThreeFrameImageView = UIImageView()
+	var fourFrameImageView = UIImageView()
+
 	var selectedTag: Int?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		observeOrientation()
 		setupTags()
-		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(swipToShare(_:)))
-		SwipeStackView.addGestureRecognizer(panGestureRecognizer)
+		setImageViewForDisplayButtons()
 	}
 
 	// MARK: @Objc methods
@@ -76,17 +79,17 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 
 	@IBAction private func didTapThreeFramesButton(_ sender: UIButton) {
 		displayThreeFrames()
-		sender.setImage(UIImage(named: "Selected"), for: .normal)
+		setSelectedImage(sender)
 	}
 
 	@IBAction private func didTapReversedThreeFramesButton(_ sender: UIButton) {
 		displayReversedThreeFrames()
-		sender.setImage(UIImage(named: "Selected"), for: .normal)
+		setSelectedImage(sender)
 	}
 
 	@IBAction private func didTapFourFramesButton(_ sender: UIButton) {
 		displayFourFramesButton()
-		sender.setImage(UIImage(named: "Selected"), for: .normal)
+		setSelectedImage(sender)
 	}
 
 	// MARK: other methods
@@ -137,5 +140,41 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 											   name: UIDevice.orientationDidChangeNotification, object: nil)
 	}
 
+	private func setImageViewForDisplayButtons() {
+
+		threeFrameImageView.frame = threeFrameButton.bounds
+		reversedThreeFrameImageView.frame = threeFrameButton.bounds
+		fourFrameImageView.frame = threeFrameButton.bounds
+
+		threeFrameImageView.image = nil
+		reversedThreeFrameImageView.image = nil
+		fourFrameImageView.image = nil
+
+		threeFrameButton.addSubview(threeFrameImageView)
+		reversedThreeFrameButton.addSubview(reversedThreeFrameImageView)
+		fourFrameButton.addSubview(fourFrameImageView)
+
+	}
+
+	private func setSelectedImage(_ sender: UIButton) {
+
+		if sender == threeFrameButton {
+			threeFrameImageView.image = UIImage(named: "Selected")
+			reversedThreeFrameImageView.image = nil
+			fourFrameImageView.image = nil
+		}
+
+		if sender == reversedThreeFrameButton {
+			reversedThreeFrameImageView.image = UIImage(named: "Selected")
+			threeFrameImageView.image = nil
+			fourFrameImageView.image = nil
+		}
+
+		if sender == fourFrameButton {
+			fourFrameImageView.image = UIImage(named: "Selected")
+			threeFrameImageView.image = nil
+			reversedThreeFrameImageView.image = nil
+		}
+	}
 }
 

@@ -130,10 +130,10 @@
                                             <constraint firstAttribute="width" secondItem="98L-LJ-ig7" secondAttribute="height" multiplier="1:1" id="fhK-8C-UE3"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="r0I-F5-ebd" userLabel="DisplayOptions StackView">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="r0I-F5-ebd" userLabel="DisplayOptions StackView">
                                         <rect key="frame" x="48" y="619" width="294" height="90"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kkh-RZ-YCT" userLabel="Three Frame Button">
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kkh-RZ-YCT" userLabel="Three Frame Button">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -150,7 +150,7 @@
                                                     <action selector="didTapThreeFramesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uom-jd-sgK"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rR-hy-jvZ">
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rR-hy-jvZ">
                                                 <rect key="frame" x="102" y="0.0" width="90" height="90"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -165,7 +165,7 @@
                                                     <action selector="didTapReversedThreeFramesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FSq-Bb-z1b"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VV9-o8-nUH">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VV9-o8-nUH">
                                                 <rect key="frame" x="204" y="0.0" width="90" height="90"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90" id="QdB-pb-uHT"/>
@@ -176,8 +176,7 @@
                                                     <backgroundConfiguration key="background" image="Layout 3"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="didTapFourFramesButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="rTg-Jy-Cvz"/>
-                                                    <action selector="didTapFourFramesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XBs-K2-DXy"/>
+                                                    <action selector="didTapFourFramesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L2G-ux-wq9"/>
                                                 </connections>
                                             </button>
                                         </subviews>
