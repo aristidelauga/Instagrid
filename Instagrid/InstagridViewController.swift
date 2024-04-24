@@ -26,28 +26,23 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 
 	@IBOutlet weak var SwipeStackView: UIStackView!
 
-	var threeFrameImageView = UIImageView()
-	var reversedThreeFrameImageView = UIImageView()
-	var fourFrameImageView = UIImageView()
+	private var threeFrameImageView = UIImageView()
+	private var reversedThreeFrameImageView = UIImageView()
+	private var fourFrameImageView = UIImageView()
 
-	var selectedTag: Int?
+	private var selectedButton: UIButton?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		observeOrientation()
-		setupTags()
 		setImageViewForDisplayButtons()
+		setSelectedImage(fourFrameButton)
 	}
 
 	// MARK: @Objc methods
 
-	@objc private func swipToShare(_ sender: UIPanGestureRecognizer) {
-		//		switch sender.state {
-		//			case .possible, .began, .changed :
-		//
-		//			case .ended, .cancelled, .failed, .recognized:
-		//
-		//		}
+	@objc private func swipeToShare(_ sender: UIPanGestureRecognizer) {
+
 	}
 
 	@objc private func orientationObserved() {
@@ -68,13 +63,13 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 
 	// MARK: @IBActions
 
-	@IBAction private func setBackgroundImage(_ sender: UIButton) {
+	@IBAction private func onOpenGallery(_ sender: UIButton) {
 		let imagePickerController = UIImagePickerController()
 		imagePickerController.sourceType = .photoLibrary
 		imagePickerController.allowsEditing = true
 		imagePickerController.delegate = self
 		present(imagePickerController, animated: true, completion: nil)
-		self.selectedTag = sender.tag
+		self.selectedButton = sender
 	}
 
 	@IBAction private func didTapThreeFramesButton(_ sender: UIButton) {
@@ -109,12 +104,6 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		bottomTrailingButton.isHidden = false
 	}
 
-	private func setupTags() {
-		topLeadingButton.tag = 1
-		topTrailingButton.tag = 2
-		bottomLeadingButton.tag = 3
-		bottomTrailingButton.tag = 4
-	}
 
 	internal func imagePickerController(_ picker: UIImagePickerController,
 										didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -124,7 +113,7 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 			return
 		}
 
-		if let selectedTag = selectedTag, let buttonToUpdate = view.viewWithTag(selectedTag) as? UIButton {
+		if let buttonToUpdate = selectedButton {
 			let buttonSize = buttonToUpdate.frame.size
 			buttonToUpdate.imageView?.frame.size = buttonSize
 			buttonToUpdate.clipsToBounds = true
@@ -158,19 +147,19 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 
 	private func setSelectedImage(_ sender: UIButton) {
 
-		if sender == threeFrameButton {
+		if sender === threeFrameButton {
 			threeFrameImageView.image = UIImage(named: "Selected")
 			reversedThreeFrameImageView.image = nil
 			fourFrameImageView.image = nil
 		}
 
-		if sender == reversedThreeFrameButton {
+		if sender === reversedThreeFrameButton {
 			reversedThreeFrameImageView.image = UIImage(named: "Selected")
 			threeFrameImageView.image = nil
 			fourFrameImageView.image = nil
 		}
 
-		if sender == fourFrameButton {
+		if sender === fourFrameButton {
 			fourFrameImageView.image = UIImage(named: "Selected")
 			threeFrameImageView.image = nil
 			reversedThreeFrameImageView.image = nil

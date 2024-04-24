@@ -72,7 +72,7 @@
                                                             <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="setBackgroundImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ozb-hJ-ir2"/>
+                                                            <action selector="onOpenGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fAw-gZ-BrM"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcE-ld-gzB" userLabel="topTrailingButton">
@@ -86,7 +86,7 @@
                                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="setBackgroundImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sF5-nH-7Df"/>
+                                                            <action selector="onOpenGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="709-1t-urL"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -105,7 +105,7 @@
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="setBackgroundImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L60-QU-gtl"/>
+                                                            <action selector="onOpenGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6G3-SQ-TD5"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vET-mw-YJY" userLabel="bottomTrailingButton">
@@ -118,7 +118,7 @@
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="setBackgroundImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XnW-X5-eYc"/>
+                                                            <action selector="onOpenGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ndk-2r-tbi"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
