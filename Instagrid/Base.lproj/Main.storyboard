@@ -210,6 +210,7 @@
                         <outlet property="bottomLeadingButton" destination="4jP-AN-cIb" id="JzD-6Z-jWv"/>
                         <outlet property="bottomTrailingButton" destination="vET-mw-YJY" id="ZwV-v2-4bj"/>
                         <outlet property="fourFrameButton" destination="VV9-o8-nUH" id="4AY-Hy-QtJ"/>
+                        <outlet property="frameStackView" destination="wLu-Dy-PA4" id="x9I-D4-L6H"/>
                         <outlet property="reversedThreeFrameButton" destination="1rR-hy-jvZ" id="dpo-RE-6hk"/>
                         <outlet property="swipeUpLabel" destination="hoj-x4-Sug" id="h9l-ao-STa"/>
                         <outlet property="threeFrameButton" destination="kkh-RZ-YCT" id="nm2-hv-mvo"/>

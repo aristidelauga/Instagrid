@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class InstagridViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+final class InstagridViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
 	// MARK: IBOutlets
 
@@ -26,9 +26,12 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 
 	@IBOutlet weak var SwipeStackView: UIStackView!
 
+	@IBOutlet weak var frameStackView: UIStackView!
+
 	private var threeFrameImageView = UIImageView()
 	private var reversedThreeFrameImageView = UIImageView()
 	private var fourFrameImageView = UIImageView()
+	private var frameStackImageView = UIImageView()
 
 	private var selectedButton: UIButton?
 
@@ -36,28 +39,36 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		super.viewDidLoad()
 		observeOrientation()
 		setImageViewForDisplayButtons()
+		setImageViewForFrameStackView()
 		setSelectedImage(fourFrameButton)
+		swipeToShare()
 	}
 
 	// MARK: @Objc methods
 
-	@objc private func swipeToShare(_ sender: UIPanGestureRecognizer) {
-
+	@objc func handleSwipe(_ sender: UITapGestureRecognizer? = nil) {
+		let image = [frameStackImageView.image]
+		let ac = UIActivityViewController(activityItems: image, applicationActivities: nil)
+		frameStackView.isUserInteractionEnabled = true
+		present(ac, animated: true)
 	}
 
 	@objc private func orientationObserved() {
+		let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
 		let orientation = UIDevice.current.orientation
-
 		switch orientation {
 			case .portrait, .unknown, .portraitUpsideDown, .faceUp, .faceDown, .landscapeRight:
 				swipeUpLabel.text = "Swipe up to share"
 				arrowView.transform = .identity
+				swipeGesture.direction = .up
 			case .landscapeLeft:
 				swipeUpLabel.text = "Swipe left to share"
 				arrowView.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 2))
+				swipeGesture.direction = .left
 			@unknown default:
 				swipeUpLabel.text = "Swipe up to share"
 				arrowView.transform = .identity
+				swipeGesture.direction = .up
 		}
 	}
 
@@ -105,6 +116,12 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	}
 
 
+	private func swipeToShare() {
+		let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+		swipeGesture.direction = .up
+		frameStackView.addGestureRecognizer(swipeGesture)
+	}
+
 	internal func imagePickerController(_ picker: UIImagePickerController,
 										didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
@@ -143,6 +160,12 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		reversedThreeFrameButton.addSubview(reversedThreeFrameImageView)
 		fourFrameButton.addSubview(fourFrameImageView)
 
+	}
+
+	private func setImageViewForFrameStackView() {
+		frameStackImageView.frame = frameStackView.bounds
+		frameStackImageView.image = nil
+		frameStackView.addSubview(frameStackImageView)
 	}
 
 	private func setSelectedImage(_ sender: UIButton) {
