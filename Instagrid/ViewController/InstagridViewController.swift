@@ -34,6 +34,7 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	private var frameStackImageView = UIImageView()
 
 	private var selectedButton: UIButton?
+	private var swipeGesture = UISwipeGestureRecognizer(target: InstagridViewController.self, action: #selector(handleSwipe))
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -41,34 +42,34 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		setImageViewForDisplayButtons()
 		setImageViewForFrameStackView()
 		setSelectedImage(fourFrameButton)
-		swipeToShare()
+//		swipeToShare()
+
 	}
 
 	// MARK: @Objc methods
 
-	@objc func handleSwipe(_ sender: UITapGestureRecognizer? = nil) {
+	@objc private func handleSwipe(_ sender: UISwipeGestureRecognizer? = nil) {
 		let image = [frameStackImageView.image]
-		let ac = UIActivityViewController(activityItems: image, applicationActivities: nil)
-		frameStackView.isUserInteractionEnabled = true
+
+		let ac = UIActivityViewController(activityItems: image as [Any], applicationActivities: nil)
+
 		present(ac, animated: true)
 	}
 
+	// methode update StackView
+
 	@objc private func orientationObserved() {
-		let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
 		let orientation = UIDevice.current.orientation
 		switch orientation {
 			case .portrait, .unknown, .portraitUpsideDown, .faceUp, .faceDown, .landscapeRight:
 				swipeUpLabel.text = "Swipe up to share"
 				arrowView.transform = .identity
-				swipeGesture.direction = .up
 			case .landscapeLeft:
 				swipeUpLabel.text = "Swipe left to share"
 				arrowView.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 2))
-				swipeGesture.direction = .left
 			@unknown default:
 				swipeUpLabel.text = "Swipe up to share"
 				arrowView.transform = .identity
-				swipeGesture.direction = .up
 		}
 	}
 
@@ -116,9 +117,14 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	}
 
 
-	private func swipeToShare() {
+	@objc private func swipeToShare() {
 		let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-		swipeGesture.direction = .up
+		if UIDevice.current.orientation == .landscapeLeft {
+			swipeGesture.direction = .left
+		} else {
+			swipeGesture.direction = .up
+		}
+		frameStackView.isUserInteractionEnabled = true
 		frameStackView.addGestureRecognizer(swipeGesture)
 	}
 
@@ -144,6 +150,7 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	private func observeOrientation() {
 		NotificationCenter.default.addObserver(self, selector: #selector(orientationObserved),
 											   name: UIDevice.orientationDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(swipeToShare), name: UIDevice.orientationDidChangeNotification, object: nil)
 	}
 
 	private func setImageViewForDisplayButtons() {

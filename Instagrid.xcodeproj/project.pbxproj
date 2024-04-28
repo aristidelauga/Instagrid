@@ -60,17 +60,49 @@
 		9227022E2B1BB2E500603B5D /* Instagrid */ = {
 			isa = PBXGroup;
 			children = (
-				92DEF1C82BC6ECB8006D61F1 /* Delm-Medium.otf */,
-				92DEF1C92BC6ECB8006D61F1 /* ThirstySoftRegular.otf */,
-				9227022F2B1BB2E500603B5D /* AppDelegate.swift */,
-				922702312B1BB2E500603B5D /* SceneDelegate.swift */,
-				922702332B1BB2E500603B5D /* InstagridViewController.swift */,
-				922702352B1BB2E500603B5D /* Main.storyboard */,
-				922702382B1BB2E600603B5D /* Assets.xcassets */,
-				9227023A2B1BB2E600603B5D /* LaunchScreen.storyboard */,
-				9227023D2B1BB2E600603B5D /* Info.plist */,
+				92BEFFF52BD96DF4008377C4 /* App */,
+				92BEFFF42BD96D69008377C4 /* Resource */,
+				929B22D32BD9528D005ED4FB /* ViewController */,
+				929B22D22BD9527A005ED4FB /* View */,
 			);
 			path = Instagrid;
+			sourceTree = "<group>";
+		};
+		929B22D22BD9527A005ED4FB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				922702352B1BB2E500603B5D /* Main.storyboard */,
+				9227023A2B1BB2E600603B5D /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		929B22D32BD9528D005ED4FB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				922702332B1BB2E500603B5D /* InstagridViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		92BEFFF42BD96D69008377C4 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				92DEF1C82BC6ECB8006D61F1 /* Delm-Medium.otf */,
+				92DEF1C92BC6ECB8006D61F1 /* ThirstySoftRegular.otf */,
+				922702382B1BB2E600603B5D /* Assets.xcassets */,
+				9227023D2B1BB2E600603B5D /* Info.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		92BEFFF52BD96DF4008377C4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				9227022F2B1BB2E500603B5D /* AppDelegate.swift */,
+				922702312B1BB2E500603B5D /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,7 +329,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 48SG7ZG46A;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Instagrid/Info.plist;
+				INFOPLIST_FILE = Instagrid/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -325,7 +357,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 48SG7ZG46A;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Instagrid/Info.plist;
+				INFOPLIST_FILE = Instagrid/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
