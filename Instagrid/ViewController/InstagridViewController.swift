@@ -24,8 +24,6 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	@IBOutlet weak var reversedThreeFrameButton: UIButton!
 	@IBOutlet weak var fourFrameButton: UIButton!
 
-	@IBOutlet weak var SwipeStackView: UIStackView!
-
 	@IBOutlet weak var frameStackView: UIStackView!
 
 	private var threeFrameImageView = UIImageView()
@@ -34,7 +32,6 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	private var frameStackImageView = UIImageView()
 
 	private var selectedButton: UIButton?
-	private var swipeGesture = UISwipeGestureRecognizer(target: InstagridViewController.self, action: #selector(handleSwipe))
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -42,30 +39,12 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		setImageViewForDisplayButtons()
 		setImageViewForFrameStackView()
 		setSelectedImage(fourFrameButton)
-
+		addGestureRecognizer()
 	}
 
 	// MARK: @Objc methods
 
-	@objc private func handleSwipe(_ sender: UISwipeGestureRecognizer? = nil) {
-
-//		guard let image = combineButtonImages(frameStackView) else {
-//			return
-//		}
-
-		let renderer = UIGraphicsImageRenderer(bounds: frameStackView.bounds)
-		frameStackView.clipsToBounds = true
-		let image = renderer.image { context in
-			frameStackView.layer.render(in: context.cgContext)
-		}
-		let ac = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-		print(image ?? "pas de frame")
-
-		present(ac, animated: true)
-	}
-
-	// methode update StackView
-
+	// Observes and updates the SwipeStackView according to device's orientation
 	@objc private func orientationObserved() {
 		let orientation = UIDevice.current.orientation
 		switch orientation {
@@ -81,25 +60,16 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		}
 	}
 
-	@objc private func swipeToShare() {
-		let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-		let screenHeight = UIScreen.main.bounds.height
-		let finalPosition = -screenHeight - 10
-		if UIDevice.current.orientation == .landscapeLeft {
-			swipeGesture.direction = .left
-			//			self.SwipeStackView.frame.origin.y = finalPosition
-			UIStackView.animate(withDuration: 0.5) {
-				self.SwipeStackView.frame.origin.y = finalPosition
-			}
-		} else {
-			swipeGesture.direction = .up
-			self.SwipeStackView.frame.origin.y = finalPosition
-			UIStackView.animate(withDuration: 0.5) {
-				self.SwipeStackView.frame.origin.y = finalPosition
-			}
+	// Observes and updates the gesture to trigger the right method
+	@objc private func observeSwipe(_ gesture: UIPanGestureRecognizer) {
+		switch gesture.state {
+			case .began, .changed:
+				swipeToShare(gesture: gesture)
+			case .ended, .cancelled:
+				sharingImage(gesture)
+			default:
+				break
 		}
-		frameStackView.isUserInteractionEnabled = true
-		frameStackView.addGestureRecognizer(swipeGesture)
 	}
 
 	// MARK: @IBActions
@@ -130,20 +100,49 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 
 	// MARK: other methods
 
+	private func addGestureRecognizer() {
+		var swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(observeSwipe(_:)))
+		frameStackView.addGestureRecognizer(swipeGesture)
+	}
+
+
+	// Allows the frameStackView to follow the finger's movement on screen
+	private func swipeToShare(gesture: UIPanGestureRecognizer) {
+		let translation = gesture.translation(in: frameStackView)
+		if UIDevice.current.orientation.isLandscape {
+			frameStackView.transform = CGAffineTransform(translationX: translation.x, y: 0)
+		} else {
+			frameStackView.transform = CGAffineTransform(translationX: 0, y: translation.y)
+		}
+	}
+
+	// The very action of sharing an image via the UIActivityViewController
+	private func sharingImage(_ gesture: UIPanGestureRecognizer) {
+		if (gesture.translation(in: frameStackView).y < 0 || gesture.translation(in: frameStackView).x < 0) {
+			let renderer = UIGraphicsImageRenderer(bounds: frameStackView.bounds)
+			frameStackView.clipsToBounds = true
+			let image = renderer.image { context in
+				frameStackView.layer.render(in: context.cgContext)
+			}
+
+			let ac = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+			print(image.size)
+
+			present(ac, animated: true)
+
+			UIView.animate(withDuration: 0.4) {
+				self.frameStackView.transform = CGAffineTransformIdentity
+			}
+		}
+	}
+
 	private func combineButtonImages(_ view: UIView) -> UIImage? {
-//		UIGraphicsBeginImageContextWithOptions(frameStackImageView.frame.size, false, 0.0)
-//		frameStackView.drawHierarchy(in: frameStackImageView.bounds, afterScreenUpdates: true)
-//		let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
-//		UIGraphicsEndImageContext()
-//		return capturedImage
 		let renderer = UIGraphicsImageRenderer(bounds: view.bounds)
 		view.clipsToBounds = true
 		let image = renderer.image { context in
 			view.layer.render(in: context.cgContext)
 		}
-
 		return image
-//
 	}
 
 	private func displayThreeFrames() {
@@ -182,9 +181,6 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 
 	private func observeOrientation() {
 		NotificationCenter.default.addObserver(self, selector: #selector(orientationObserved),
-											   name: UIDevice.orientationDidChangeNotification,
-											   object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(swipeToShare),
 											   name: UIDevice.orientationDidChangeNotification,
 											   object: nil)
 	}
