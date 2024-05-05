@@ -29,7 +29,6 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	private var threeFrameImageView = UIImageView()
 	private var reversedThreeFrameImageView = UIImageView()
 	private var fourFrameImageView = UIImageView()
-	private var frameStackImageView = UIImageView()
 
 	private var selectedButton: UIButton?
 
@@ -76,9 +75,8 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 
 	@IBAction private func onOpenGallery(_ sender: UIButton) {
 		let imagePickerController = UIImagePickerController()
-		imagePickerController.sourceType = .photoLibrary
-		imagePickerController.allowsEditing = true
 		imagePickerController.delegate = self
+		imagePickerController.sourceType = .photoLibrary
 		present(imagePickerController, animated: true, completion: nil)
 		self.selectedButton = sender
 	}
@@ -163,7 +161,7 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	internal func imagePickerController(_ picker: UIImagePickerController,
 										didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
-		guard let image = info[.editedImage] as? UIImage else {
+		guard let image = info[UIImagePickerController.InfoKey.originalImage] else {
 			print("No image found")
 			return
 		}
@@ -172,8 +170,8 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 			let buttonSize = buttonToUpdate.frame.size
 			buttonToUpdate.imageView?.frame.size = buttonSize
 			buttonToUpdate.clipsToBounds = true
-			buttonToUpdate.imageView?.contentMode = .scaleAspectFit
-			buttonToUpdate.setImage(image, for: .normal)
+			buttonToUpdate.imageView?.contentMode = .scaleToFill
+			buttonToUpdate.setImage(image as? UIImage, for: .normal)
 		}
 
 		picker.dismiss(animated: true)
@@ -202,10 +200,9 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	}
 
 	private func setImageViewForFrameStackView() {
-		frameStackImageView.frame = frameStackView.bounds
-		frameStackImageView.image = nil
-		frameStackImageView.clipsToBounds = true
-		frameStackView.addSubview(frameStackImageView)
+		for button in [topLeadingButton, topTrailingButton, bottomLeadingButton, bottomTrailingButton] {
+			button?.setImage(UIImage(resource: .plus), for: .normal)
+		}
 	}
 
 	private func setSelectedImage(_ sender: UIButton) {
@@ -229,4 +226,5 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		}
 	}
 }
+
 
