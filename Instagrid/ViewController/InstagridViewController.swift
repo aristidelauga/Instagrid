@@ -30,6 +30,11 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	private var reversedThreeFrameImageView = UIImageView()
 	private var fourFrameImageView = UIImageView()
 
+	private var topLeadingImageView = UIImageView()
+	private var topTrailingImageView = UIImageView()
+	private var bottomLeadingImageView = UIImageView()
+	private var bottomTrailingImageView = UIImageView()
+
 	private var selectedButton: UIButton?
 
 	override func viewDidLoad() {
@@ -37,6 +42,7 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		observeOrientation()
 		setImageViewForDisplayButtons()
 		setImageViewForFrameStackView()
+		setImageViewsForFrameStackView()
 		setSelectedImage(fourFrameButton)
 		addGestureRecognizer()
 	}
@@ -60,6 +66,7 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	}
 
 	// Observes and updates the gesture to trigger the right method
+	// TODO: gérer tous les cas: failed et possible(break)
 	@objc private func observeSwipe(_ gesture: UIPanGestureRecognizer) {
 		switch gesture.state {
 			case .began, .changed:
@@ -116,7 +123,19 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 
 	// The very action of sharing an image via the UIActivityViewController
 	private func sharingImage(_ gesture: UIPanGestureRecognizer) {
-		if (gesture.translation(in: frameStackView).y < 0 || gesture.translation(in: frameStackView).x < 0) {
+		let translation = gesture.translation(in: frameStackView)
+		let threshold: CGFloat = -400.0
+
+		let shouldShare: Bool
+		if UIDevice.current.orientation.isLandscape {
+			print("translation.y : \(translation.x) et threshold \(threshold)")
+			shouldShare = translation.x < threshold
+		} else {
+			print("translation.y : \(translation.y) et threshold \(threshold)")
+			shouldShare = translation.y < threshold
+		}
+
+		if shouldShare {
 			let renderer = UIGraphicsImageRenderer(bounds: frameStackView.bounds)
 			frameStackView.clipsToBounds = true
 			let image = renderer.image { context in
@@ -124,12 +143,24 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 			}
 
 			let ac = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-			print(image.size)
 
-			present(ac, animated: true)
+			ac.completionWithItemsHandler = { [weak self] _, _, _, _ in
+				// Reset frameStackView position and visibility
+				UIView.animate(withDuration: 0.4) {
+					self?.frameStackView.transform = .identity
+					self?.frameStackView.isHidden = false
+				}
+			}
 
+			// Hide the frameStackView and present the activity view controller
 			UIView.animate(withDuration: 0.4) {
-				self.frameStackView.transform = CGAffineTransformIdentity
+				self.frameStackView.isHidden = true
+			}
+
+			present(ac, animated: true, completion: nil)
+		} else {
+			UIView.animate(withDuration: 0.6) {
+				self.frameStackView.transform = .identity
 			}
 		}
 	}
@@ -143,19 +174,23 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		return image
 	}
 
+	//TODO: Check if I should leave the setImageViewForFrameStackView() here or not
 	private func displayThreeFrames() {
 		bottomTrailingButton.isHidden = false
 		topTrailingButton.isHidden = true
+		setImageViewForFrameStackView()
 	}
 
 	private func displayReversedThreeFrames() {
 		topTrailingButton.isHidden = false
 		bottomTrailingButton.isHidden = true
+		setImageViewForFrameStackView()
 	}
 
 	private func displayFourFramesButton() {
 		topTrailingButton.isHidden = false
 		bottomTrailingButton.isHidden = false
+		setImageViewForFrameStackView()
 	}
 
 	internal func imagePickerController(_ picker: UIImagePickerController,
@@ -167,11 +202,27 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		}
 
 		if let buttonToUpdate = selectedButton {
-			let buttonSize = buttonToUpdate.frame.size
-			buttonToUpdate.imageView?.frame.size = buttonSize
-			buttonToUpdate.clipsToBounds = true
-			buttonToUpdate.imageView?.contentMode = .scaleToFill
-			buttonToUpdate.setImage(image as? UIImage, for: .normal)
+			buttonToUpdate.setImage(nil, for: .normal)
+			buttonToUpdate.setImage(nil, for: .highlighted)
+			buttonToUpdate.setImage(nil, for: .selected)
+			buttonToUpdate.setImage(nil, for: .disabled)
+		}
+
+		switch selectedButton {
+			case topLeadingButton:
+//				topLeadingButton.setImage(nil, for: .normal)
+				topLeadingImageView.image = image as? UIImage
+			case topTrailingButton:
+//				topLeadingButton.setImage(nil, for: .normal)
+				topTrailingImageView.image = image as? UIImage
+			case bottomLeadingButton:
+//				topLeadingButton.setImage(nil, for: .normal)
+				bottomLeadingImageView.image = image as? UIImage
+			case bottomTrailingButton:
+//				topLeadingButton.setImage(nil, for: .normal)
+				bottomTrailingImageView.image = image as? UIImage
+			default:
+				break
 		}
 
 		picker.dismiss(animated: true)
@@ -199,9 +250,35 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 
 	}
 
+	private func setupImageViewConstraints(_ imageView: UIImageView, to button: UIButton) {
+		imageView.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			imageView.topAnchor.constraint(equalTo: button.topAnchor),
+			imageView.bottomAnchor.constraint(equalTo: button.bottomAnchor),
+			imageView.leadingAnchor.constraint(equalTo: button.leadingAnchor),
+			imageView.trailingAnchor.constraint(equalTo: button.trailingAnchor)
+		])
+	}
+
+	private func setImageViewsForFrameStackView() {
+		topLeadingButton.addSubview(topLeadingImageView)
+		setupImageViewConstraints(topLeadingImageView, to: topLeadingButton)
+
+		topTrailingButton.addSubview(topTrailingImageView)
+		setupImageViewConstraints(topTrailingImageView, to: topTrailingButton)
+
+		bottomLeadingButton.addSubview(bottomLeadingImageView)
+		setupImageViewConstraints(bottomLeadingImageView, to: bottomLeadingButton)
+
+		bottomTrailingButton.addSubview(bottomTrailingImageView)
+		setupImageViewConstraints(bottomTrailingImageView, to: bottomTrailingButton)
+	}
+
 	private func setImageViewForFrameStackView() {
 		for button in [topLeadingButton, topTrailingButton, bottomLeadingButton, bottomTrailingButton] {
-			button?.setImage(UIImage(resource: .plus), for: .normal)
+			button?.setImage(UIImage(named: "Plus"), for: .normal)
+//		for imageView in [topLeadingImageView, topTrailingImageView, bottomLeadingImageView, bottomTrailingImageView] {
+//			imageView.image = UIImage(systemName: "plus")
 		}
 	}
 
@@ -226,5 +303,3 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		}
 	}
 }
-
-
