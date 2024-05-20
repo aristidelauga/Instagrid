@@ -65,10 +65,9 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
-                                                            <backgroundConfiguration key="background" cornerRadius="0.0" strokeWidth="5">
+                                                            <backgroundConfiguration key="background" cornerRadius="0.0" image="Plus" imageContentMode="center" strokeWidth="5">
                                                                 <color key="strokeColor" red="0.023529411760000001" green="0.36470588240000001" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </backgroundConfiguration>
-                                                            <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                                         </buttonConfiguration>
                                                         <connections>
                                                             <action selector="onOpenGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fAw-gZ-BrM"/>
@@ -79,7 +78,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
-                                                            <backgroundConfiguration key="background" cornerRadius="0.0" strokeWidth="5">
+                                                            <backgroundConfiguration key="background" cornerRadius="0.0" image="Plus" imageContentMode="center" strokeWidth="5">
                                                                 <color key="strokeColor" red="0.023529411760000001" green="0.36470588240000001" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
@@ -98,7 +97,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
-                                                            <backgroundConfiguration key="background" cornerRadius="0.0" strokeWidth="5">
+                                                            <backgroundConfiguration key="background" cornerRadius="0.0" image="Plus" imageContentMode="center" strokeWidth="5">
                                                                 <color key="strokeColor" red="0.023529411760000001" green="0.36470588240000001" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
@@ -111,7 +110,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" cornerStyle="fixed">
-                                                            <backgroundConfiguration key="background" cornerRadius="0.0" strokeWidth="5">
+                                                            <backgroundConfiguration key="background" cornerRadius="0.0" image="Plus" imageContentMode="center" strokeWidth="5">
                                                                 <color key="strokeColor" red="0.023529411760000001" green="0.36470588240000001" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
@@ -226,6 +225,7 @@
         <image name="Layout 1" width="26.666666030883789" height="26.666666030883789"/>
         <image name="Layout 2" width="26.666666030883789" height="26.666666030883789"/>
         <image name="Layout 3" width="26.666666030883789" height="26.666666030883789"/>
+        <image name="Plus" width="13.333333015441895" height="13.333333015441895"/>
         <namedColor name="backgroundColor">
             <color red="0.74099999666213989" green="0.83899998664855957" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

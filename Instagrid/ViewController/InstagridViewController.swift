@@ -41,7 +41,6 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		super.viewDidLoad()
 		observeOrientation()
 		setImageViewForDisplayButtons()
-		setImageViewForFrameStackView()
 		setImageViewsForFrameStackView()
 		setSelectedImage(fourFrameButton)
 		addGestureRecognizer()
@@ -66,13 +65,14 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	}
 
 	// Observes and updates the gesture to trigger the right method
-	// TODO: gérer tous les cas: failed et possible(break)
 	@objc private func observeSwipe(_ gesture: UIPanGestureRecognizer) {
 		switch gesture.state {
 			case .began, .changed:
 				swipeToShare(gesture: gesture)
 			case .ended, .cancelled:
-				sharingImage(gesture)
+				shareCollage(gesture)
+			case .possible, .failed:
+				break
 			default:
 				break
 		}
@@ -122,16 +122,14 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 	}
 
 	// The very action of sharing an image via the UIActivityViewController
-	private func sharingImage(_ gesture: UIPanGestureRecognizer) {
+	private func shareCollage(_ gesture: UIPanGestureRecognizer) {
 		let translation = gesture.translation(in: frameStackView)
 		let threshold: CGFloat = -400.0
 
 		let shouldShare: Bool
 		if UIDevice.current.orientation.isLandscape {
-			print("translation.y : \(translation.x) et threshold \(threshold)")
 			shouldShare = translation.x < threshold
 		} else {
-			print("translation.y : \(translation.y) et threshold \(threshold)")
 			shouldShare = translation.y < threshold
 		}
 
@@ -174,23 +172,19 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		return image
 	}
 
-	//TODO: Check if I should leave the setImageViewForFrameStackView() here or not
 	private func displayThreeFrames() {
 		bottomTrailingButton.isHidden = false
 		topTrailingButton.isHidden = true
-		setImageViewForFrameStackView()
 	}
 
 	private func displayReversedThreeFrames() {
 		topTrailingButton.isHidden = false
 		bottomTrailingButton.isHidden = true
-		setImageViewForFrameStackView()
 	}
 
 	private func displayFourFramesButton() {
 		topTrailingButton.isHidden = false
 		bottomTrailingButton.isHidden = false
-		setImageViewForFrameStackView()
 	}
 
 	internal func imagePickerController(_ picker: UIImagePickerController,
@@ -201,25 +195,18 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 			return
 		}
 
-		if let buttonToUpdate = selectedButton {
-			buttonToUpdate.setImage(nil, for: .normal)
-			buttonToUpdate.setImage(nil, for: .highlighted)
-			buttonToUpdate.setImage(nil, for: .selected)
-			buttonToUpdate.setImage(nil, for: .disabled)
-		}
-
 		switch selectedButton {
 			case topLeadingButton:
-//				topLeadingButton.setImage(nil, for: .normal)
+				topLeadingButton.setBackgroundImage(nil, for: .normal)
 				topLeadingImageView.image = image as? UIImage
 			case topTrailingButton:
-//				topLeadingButton.setImage(nil, for: .normal)
+				topTrailingButton.setBackgroundImage(nil, for: .normal)
 				topTrailingImageView.image = image as? UIImage
 			case bottomLeadingButton:
-//				topLeadingButton.setImage(nil, for: .normal)
+				bottomLeadingButton.setBackgroundImage(nil, for: .normal)
 				bottomLeadingImageView.image = image as? UIImage
 			case bottomTrailingButton:
-//				topLeadingButton.setImage(nil, for: .normal)
+				bottomTrailingButton.setBackgroundImage(nil, for: .normal)
 				bottomTrailingImageView.image = image as? UIImage
 			default:
 				break
@@ -272,14 +259,6 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 
 		bottomTrailingButton.addSubview(bottomTrailingImageView)
 		setupImageViewConstraints(bottomTrailingImageView, to: bottomTrailingButton)
-	}
-
-	private func setImageViewForFrameStackView() {
-		for button in [topLeadingButton, topTrailingButton, bottomLeadingButton, bottomTrailingButton] {
-			button?.setImage(UIImage(named: "Plus"), for: .normal)
-//		for imageView in [topLeadingImageView, topTrailingImageView, bottomLeadingImageView, bottomTrailingImageView] {
-//			imageView.image = UIImage(systemName: "plus")
-		}
 	}
 
 	private func setSelectedImage(_ sender: UIButton) {
