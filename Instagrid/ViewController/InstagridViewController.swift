@@ -191,7 +191,9 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 										didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
 		guard let image = info[UIImagePickerController.InfoKey.originalImage] else {
-			print("No image found")
+			let alertVC = UIAlertController(title: "Error", message: "No image found", preferredStyle: .alert)
+			alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+			self.present(alertVC, animated: true, completion: nil)
 			return
 		}
 
