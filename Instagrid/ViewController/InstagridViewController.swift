@@ -163,15 +163,6 @@ final class InstagridViewController: UIViewController, UIImagePickerControllerDe
 		}
 	}
 
-	private func combineButtonImages(_ view: UIView) -> UIImage? {
-		let renderer = UIGraphicsImageRenderer(bounds: view.bounds)
-		view.clipsToBounds = true
-		let image = renderer.image { context in
-			view.layer.render(in: context.cgContext)
-		}
-		return image
-	}
-
 	private func displayThreeFrames() {
 		bottomTrailingButton.isHidden = false
 		topTrailingButton.isHidden = true
